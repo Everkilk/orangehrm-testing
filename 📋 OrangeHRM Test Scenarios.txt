@@ -1,0 +1,339 @@
+📋 OrangeHRM Test Scenarios
+🔐 Module 1: Authentication
+Scenario ID	Description
+SC-001	Verify login with valid credentials
+SC-002	Verify login with invalid username
+SC-003	Verify login with invalid password
+SC-004	Verify login with empty username field
+SC-005	Verify login with empty password field
+SC-006	Verify login with both fields empty
+SC-007	Verify logout functionality
+SC-008	Verify "Forgot Password" functionality
+👤 Module 2: Employee Management (PIM)
+Scenario ID	Description
+SC-009	Verify adding a new employee with valid data
+SC-010	Verify adding employee with missing required fields
+SC-011	Verify adding employee with invalid data format
+SC-012	Verify editing existing employee information
+SC-013	Verify deleting an existing employee
+SC-014	Verify searching employee by name
+SC-015	Verify searching employee by ID
+SC-016	Verify employee ID boundary values (min/max length)
+SC-017	Verify employee name boundary values (min/max length)
+🏖️ Module 3: Leave Management
+Scenario ID	Description
+SC-018	Verify applying for leave with valid data
+SC-019	Verify applying for leave with past date
+SC-020	Verify applying for leave with empty fields
+SC-021	Verify leave status transition (Pending → Approved)
+SC-022	Verify leave status transition (Pending → Rejected)
+SC-023	Verify leave status transition (Approved → Cancelled)
+SC-024	Verify leave balance after approval
+SC-025	Verify admin can view all leave requests
+👥 Module 4: User Management (Admin)
+Scenario ID	Description
+SC-026	Verify creating a new system user with valid data
+SC-027	Verify creating user with duplicate username
+SC-028	Verify creating user with empty required fields
+SC-029	Verify editing existing user information
+SC-030	Verify deleting an existing user
+SC-031	Verify searching user by username
+SC-032	Verify user role assignment (Admin vs Employee)
+🔑 Module 5: My Info (Profile Management)
+Scenario ID	Description
+SC-033	Verify updating personal information
+SC-034	Verify updating contact details with valid data
+SC-035	Verify updating contact with invalid phone number format
+SC-036	Verify phone number boundary values (min/max digits)
+SC-037	Verify changing password with valid data
+SC-038	Verify changing password with wrong current password
+SC-039	Verify changing password with mismatched new passwords
+🔍 Module 6: Search & Filter
+Scenario ID	Description
+SC-040	Verify search returns correct results
+SC-041	Verify search with no matching results
+SC-042	Verify search with empty input
+SC-043	Verify filter by employee status (Active/Inactive)
+SC-044	Verify filter by job title
+📊 Summary
+Module	Scenario Count
+Authentication	8
+Employee Management	9
+Leave Management	8
+User Management	7
+Profile Management	7
+Search & Filter	5
+Total	44 Scenarios
+💡 Which Techniques Cover Which Scenarios
+Technique	Scenarios
+Equivalence Partitioning	SC-001-006, SC-009-011, SC-026-028
+Boundary Value Analysis	SC-016, SC-017, SC-035, SC-036
+State Transition	SC-021, SC-022, SC-023
+Use Case Testing	SC-018~025
+Decision Table	SC-032, SC-037~039 
+
+
+
+Test Case
+Module 1: Authentication
+SC-001: Verify login with valid credentials
+TC ID	Description
+TC-001-01	Login with valid username and valid password
+TC-001-02	Login with valid username and valid password (case sensitive)
+SC-002: Verify login with invalid username
+TC ID	Description
+TC-002-01	Login with non-existing username and valid password
+TC-002-02	Login with special characters in username
+TC-002-03	Login with spaces in username
+TC-002-04	Login with SQL injection in username
+SC-003: Verify login with invalid password
+TC ID	Description
+TC-003-01	Login with valid username and wrong password
+TC-003-02	Login with valid username and password in wrong case
+TC-003-03	Login with valid username and special characters as password
+TC-003-04	Login with valid username and SQL injection as password
+SC-004: Verify login with empty username field
+TC ID	Description
+TC-004-01	Login with empty username and valid password
+TC-004-02	Login with spaces only in username and valid password
+SC-005: Verify login with empty password field
+TC ID	Description
+TC-005-01	Login with valid username and empty password
+TC-005-02	Login with valid username and spaces only as password
+SC-006: Verify login with both fields empty
+TC ID	Description
+TC-006-01	Login with both username and password empty
+TC-006-02	Login with spaces only in both fields
+SC-007: Verify logout functionality
+TC ID	Description
+TC-007-01	Logout from system successfully
+TC-007-02	Verify user cannot access pages after logout
+TC-007-03	Verify session is cleared after logout
+SC-008: Verify "Forgot Password" functionality
+TC ID	Description
+TC-008-01	Reset password with valid registered email
+TC-008-02	Reset password with non-existing email
+TC-008-03	Reset password with empty email field
+TC-008-04	Reset password with invalid email format
+👤 Module 2: Employee Management (PIM)
+SC-009: Verify adding a new employee with valid data
+TC ID	Description
+TC-009-01	Add employee with all required fields filled correctly
+TC-009-02	Add employee with all required and optional fields filled
+TC-009-03	Add employee with minimum required information only
+SC-010: Verify adding employee with missing required fields
+TC ID	Description
+TC-010-01	Add employee with empty first name
+TC-010-02	Add employee with empty last name
+TC-010-03	Add employee with empty employee ID
+TC-010-04	Add employee with all required fields empty
+SC-011: Verify adding employee with invalid data format
+TC ID	Description
+TC-011-01	Add employee with numbers in first name field
+TC-011-02	Add employee with special characters in name field
+TC-011-03	Add employee with invalid date of birth format
+TC-011-04	Add employee with future date as date of birth
+SC-012: Verify editing existing employee information
+TC ID	Description
+TC-012-01	Edit employee first name with valid data
+TC-012-02	Edit employee last name with valid data
+TC-012-03	Edit employee job title with valid data
+TC-012-04	Edit employee with empty required fields
+TC-012-05	Edit employee with invalid data format
+SC-013: Verify deleting an existing employee
+TC ID	Description
+TC-013-01	Delete a single existing employee
+TC-013-02	Delete multiple employees at once
+TC-013-03	Cancel deletion and verify employee still exists
+SC-014: Verify searching employee by name
+TC ID	Description
+TC-014-01	Search with exact full name
+TC-014-02	Search with partial first name
+TC-014-03	Search with partial last name
+TC-014-04	Search with name that does not exist
+TC-014-05	Search with special characters
+TC-014-06	Search with empty name field
+SC-015: Verify searching employee by ID
+TC ID	Description
+TC-015-01	Search with exact valid employee ID
+TC-015-02	Search with non-existing employee ID
+TC-015-03	Search with letters in employee ID field
+TC-015-04	Search with empty employee ID field
+SC-016: Verify employee ID boundary values
+TC ID	Description
+TC-016-01	Enter employee ID with minimum length (1 character)
+TC-016-02	Enter employee ID with minimum length - 1 (empty)
+TC-016-03	Enter employee ID with maximum length (10 characters)
+TC-016-04	Enter employee ID with maximum length + 1 (11 characters)
+SC-017: Verify employee name boundary values
+TC ID	Description
+TC-017-01	Enter first name with minimum length (1 character)
+TC-017-02	Enter first name with minimum length - 1 (empty)
+TC-017-03	Enter first name with maximum length (50 characters)
+TC-017-04	Enter first name with maximum length + 1 (51 characters)
+TC-017-05	Enter last name with minimum length (1 character)
+TC-017-06	Enter last name with maximum length (50 characters)
+TC-017-07	Enter last name with maximum length + 1 (51 characters)
+🏖️ Module 3: Leave Management
+SC-018: Verify applying for leave with valid data
+TC ID	Description
+TC-018-01	Apply for leave with valid leave type and future date
+TC-018-02	Apply for leave with valid data and comment
+TC-018-03	Apply for leave for single day
+TC-018-04	Apply for leave for multiple days
+SC-019: Verify applying for leave with past date
+TC ID	Description
+TC-019-01	Apply for leave with past start date
+TC-019-02	Apply for leave with end date before start date
+TC-019-03	Apply for leave with today's date
+SC-020: Verify applying for leave with empty fields
+TC ID	Description
+TC-020-01	Apply for leave with empty leave type
+TC-020-02	Apply for leave with empty start date
+TC-020-03	Apply for leave with empty end date
+TC-020-04	Apply for leave with all fields empty
+SC-021: Verify leave status transition (Pending → Approved)
+TC ID	Description
+TC-021-01	Admin approves a pending leave request
+TC-021-02	Verify leave balance decreases after approval
+TC-021-03	Verify employee receives notification after approval
+SC-022: Verify leave status transition (Pending → Rejected)
+TC ID	Description
+TC-022-01	Admin rejects a pending leave request
+TC-022-02	Verify leave balance unchanged after rejection
+TC-022-03	Reject leave request with a reason
+TC-022-04	Reject leave request without a reason
+SC-023: Verify leave status transition (Approved → Cancelled)
+TC ID	Description
+TC-023-01	Employee cancels an approved leave request
+TC-023-02	Verify leave balance restored after cancellation
+TC-023-03	Cancel leave request that has already started
+SC-024: Verify leave balance after approval
+TC ID	Description
+TC-024-01	Verify leave balance decreases correctly for single day
+TC-024-02	Verify leave balance decreases correctly for multiple days
+TC-024-03	Apply for leave exceeding available balance
+SC-025: Verify admin can view all leave requests
+TC ID	Description
+TC-025-01	Admin views all pending leave requests
+TC-025-02	Admin filters leave requests by employee name
+TC-025-03	Admin filters leave requests by leave type
+TC-025-04	Admin filters leave requests by status
+👥 Module 4: User Management (Admin)
+SC-026: Verify creating a new system user with valid data
+TC ID	Description
+TC-026-01	Create user with all required fields filled correctly
+TC-026-02	Create Admin role user successfully
+TC-026-03	Create Employee role user successfully
+SC-027: Verify creating user with duplicate username
+TC ID	Description
+TC-027-01	Create user with already existing username
+TC-027-02	Create user with same username in different case
+SC-028: Verify creating user with empty required fields
+TC ID	Description
+TC-028-01	Create user with empty username
+TC-028-02	Create user with empty password
+TC-028-03	Create user with empty employee name
+TC-028-04	Create user with all fields empty
+SC-029: Verify editing existing user information
+TC ID	Description
+TC-029-01	Edit user role from Employee to Admin
+TC-029-02	Edit user role from Admin to Employee
+TC-029-03	Edit user status from Enabled to Disabled
+TC-029-04	Edit user status from Disabled to Enabled
+TC-029-05	Edit username with valid new username
+TC-029-06	Edit username with already existing username
+SC-030: Verify deleting an existing user
+TC ID	Description
+TC-030-01	Delete a single existing user
+TC-030-02	Delete multiple users at once
+TC-030-03	Cancel deletion and verify user still exists
+SC-031: Verify searching user by username
+TC ID	Description
+TC-031-01	Search with exact existing username
+TC-031-02	Search with partial username
+TC-031-03	Search with non-existing username
+TC-031-04	Search with empty username field
+TC-031-05	Search with special characters
+SC-032: Verify user role assignment
+TC ID	Description
+TC-032-01	Admin role can access all modules
+TC-032-02	Employee role cannot access Admin module
+TC-032-03	Employee role can access own profile only
+TC-032-04	Disabled user cannot login
+🔑 Module 5: Profile Management (My Info)
+SC-033: Verify updating personal information
+TC ID	Description
+TC-033-01	Update nickname with valid data
+TC-033-02	Update date of birth with valid date
+TC-033-03	Update date of birth with future date
+TC-033-04	Update marital status successfully
+TC-033-05	Update nationality successfully
+SC-034: Verify updating contact details with valid data
+TC ID	Description
+TC-034-01	Update home address with valid data
+TC-034-02	Update city with valid data
+TC-034-03	Update work email with valid format
+TC-034-04	Update work email with invalid format
+TC-034-05	Update home email with valid format
+SC-035: Verify updating contact with invalid phone number format
+TC ID	Description
+TC-035-01	Enter phone number with letters
+TC-035-02	Enter phone number with special characters
+TC-035-03	Enter phone number with spaces
+SC-036: Verify phone number boundary values
+TC ID	Description
+TC-036-01	Enter phone number with minimum length (9 digits)
+TC-036-02	Enter phone number with minimum length - 1 (8 digits)
+TC-036-03	Enter phone number with maximum length (25 digits)
+TC-036-04	Enter phone number with maximum length + 1 (26 digits)
+SC-037: Verify changing password with valid data
+TC ID	Description
+TC-037-01	Change password with correct current password and valid new password
+TC-037-02	Change password with minimum length new password
+TC-037-03	Change password with maximum length new password
+SC-038: Verify changing password with wrong current password
+TC ID	Description
+TC-038-01	Change password with incorrect current password
+TC-038-02	Change password with empty current password
+TC-038-03	Change password with spaces as current password
+SC-039: Verify changing password with mismatched new passwords
+TC ID	Description
+TC-039-01	Enter different values in new password and confirm password
+TC-039-02	Enter empty new password
+TC-039-03	Enter empty confirm password
+TC-039-04	Enter new password same as current password
+🔍 Module 6: Search & Filter
+SC-040: Verify search returns correct results
+TC ID	Description
+TC-040-01	Search employee with exact matching name
+TC-040-02	Search employee with partial matching name
+TC-040-03	Verify search results display correct information
+SC-041: Verify search with no matching results
+TC ID	Description
+TC-041-01	Search with name that does not exist in system
+TC-041-02	Verify appropriate message shown for no results
+SC-042: Verify search with empty input
+TC ID	Description
+TC-042-01	Search with empty field returns all records
+TC-042-02	Search with spaces only in field
+SC-043: Verify filter by employee status
+TC ID	Description
+TC-043-01	Filter employees by Active status
+TC-043-02	Filter employees by Inactive status
+TC-043-03	Filter employees by all statuses
+TC-043-04	Verify filtered results match selected status
+SC-044: Verify filter by job title
+TC ID	Description
+TC-044-01	Filter employees by existing job title
+TC-044-02	Filter employees by job title with no matching employees
+TC-044-03	Verify filtered results match selected job title
+📊 Final Summary
+Module	Scenarios	Test Cases
+Authentication	8	26
+Employee Management	9	40
+Leave Management	8	29
+User Management	7	28
+Profile Management	7	27
+Search & Filter	5	15
+Total	44	165
